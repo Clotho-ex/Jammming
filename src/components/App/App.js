@@ -16,9 +16,7 @@ function App() {
   }, []);
 
   function addTrack(track) {
-    const existingTrack = playlistTracks.find((t) => t.id === track.id);
-    const newTrack = playlistTracks.concat(track);
-    if (existingTrack) {
+    if (!playlistTracks.find((t) => t.id === track.id)) {
       setPlaylistTracks((prevTracks) => [...prevTracks, track]);
     } else {
       console.log("Track Already on the List");
@@ -35,13 +33,24 @@ function App() {
     setPlaylistName(name);
   }
 
-  function savePlaylist() {
+  async function savePlaylist() {
     const trackURIs = playlistTracks.map((t) => t.uri);
+    try {
+      await Spotify.savePlaylist(playlistName, trackURIs);
+      setPlaylistName("New Playlist");
+      setPlaylistTracks([]);
+    } catch (error) {
+      console.error("Error saving playlist", error);
+    }
   }
 
-  function search(term) {
-    Spotify.search(term).then((result) => setSearchResults(result));
-    console.log(term);
+  async function search(term) {
+    try {
+      const result = await Spotify.search(term);
+      setSearchResults(result);
+    } catch (error) {
+      console.error("Error searching tracks", error);
+    }
   }
 
   return (

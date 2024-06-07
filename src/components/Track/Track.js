@@ -1,40 +1,33 @@
 import React from "react";
 import styles from "./Track.module.css";
 
-function Track(props) {
+function Track({ track, isRemoval, onAdd, onRemove }) {
   function renderAction() {
-    if (props.isRemoval) {
-      return (
-        <button className={styles["Track-action"]} onClick={passTrackToRemove}>
-          -
-        </button>
-      );
-    } else {
-      return (
-        <button className={styles["Track-action"]} onClick={passTrack}>
-          +
-        </button>
-      );
-    }
+    return (
+      <button
+        className={styles["Track-action"]}
+        onClick={isRemoval ? passTrackToRemove : passTrack}>
+        {isRemoval ? "-" : "+"}
+      </button>
+    );
   }
 
   function passTrack() {
-    props.onAdd(props.track);
+    onAdd(track);
   }
 
   function passTrackToRemove() {
-    props.onRemove(props.track);
+    onRemove(track);
   }
 
   return (
     <div className={styles.Track}>
       <div className={styles["Track-information"]}>
-        <h3>{props.track.name}</h3>
+        <h3>{track.name}</h3>
         <p>
-          {props.track.artist} | {props.track.album}
+          {track.artist} | {track.album}
         </p>
       </div>
-      {/* <button class="Track-action"><!-- + or - will go here --></button> */}
       {renderAction()}
     </div>
   );
