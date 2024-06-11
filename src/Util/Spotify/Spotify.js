@@ -1,6 +1,6 @@
 let accessToken;
 const clientID = "b8927677613040689da5eb7c6eb6ea9c";
-const redirectUrl = "http://localhost:3000";
+const redirectUrl = "https://clothoexjammmingproject.surge.sh";
 
 const Spotify = {
   getAccessToken() {
@@ -68,17 +68,20 @@ const Spotify = {
         return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
           headers: header,
           method: "POST",
-          body: JSON.stringify({name: name}),
+          body: JSON.stringify({ name: name }),
         })
-        .then((response) => response.json())
-        .then((jsonResponse) => {
-          playlistId = jsonResponse.id
-          return fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-            headers: header,
-            method: "POST",
-            body: JSON.stringify({uris: trackUris}),
-          })
-        })
+          .then((response) => response.json())
+          .then((jsonResponse) => {
+            playlistId = jsonResponse.id;
+            return fetch(
+              `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+              {
+                headers: header,
+                method: "POST",
+                body: JSON.stringify({ uris: trackUris }),
+              }
+            );
+          });
       });
   },
 };
