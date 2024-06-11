@@ -23,6 +23,11 @@ function Playlist({
     setIsFocused(false);
   }
 
+  function handleSave() {
+    onSave();
+    window.location.reload();
+  }
+
   return (
     <div className={styles.Playlist}>
       <input
@@ -37,7 +42,7 @@ function Playlist({
         onRemove={onRemove}
         isRemoval={true}
       />
-      <button className={styles["Playlist-save"]} onClick={onSave}>
+      <button className={styles["Playlist-save"]} onClick={handleSave}>
         SAVE TO SPOTIFY
       </button>
     </div>
