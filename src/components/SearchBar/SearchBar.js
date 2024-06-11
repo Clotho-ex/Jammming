@@ -33,7 +33,7 @@ function SearchBar({ onSearch }) {
   return (
     <div className={styles.SearchBar}>
       <input
-        placeholder={isFocused ? "" : "Search a Song, Album, or Artist"}
+        placeholder={isFocused ? "" : "Search a Song"}
         value={term}
         onChange={handleTermChange}
         onFocus={handleFocus}

@@ -2,36 +2,35 @@ body,
 html,
 #root {
   height: 100%;
+  background-color: #F0EDF6;
+}
+
+input::placeholder {
+  color: var(--text-color);
+  text-align: center;
 }
 
 html {
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 h1 {
   padding: .77rem 0;
-  background-color: #010c3f;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-family), sans-serif;
   font-size: 1.88rem;
-  color: #fff;
+  text-align: center;
+  color: var(--text-color);
 }
 
 h1 .highlight {
-  color: #6c41ec;
-}
-
-h2 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.55rem;
+  color: var(--purple);
 }
 
 .App {
   height: 100%;
-  padding: 0 17% 10% 17%;
-  font-family: 'Work Sans', sans-serif;
-  font-weight: 500;
-  color: #fff;
+  padding: 0 15% 10% 15%;
+  font-family: var(--font-family), sans-serif;
+  font-weight: bold;
 }
 
 .App-playlist {

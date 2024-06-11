@@ -7,7 +7,7 @@ import { Spotify } from "../../Util/Spotify/Spotify";
 
 function App() {
   const [searchResults, setSearchResults] = useState([]);
-  const [playlistName, setPlaylistName] = useState("Example Playlist Name");
+  const [playlistName, setPlaylistName] = useState("");
   const [playlistTracks, setPlaylistTracks] = useState([]);
 
   useEffect(() => {
@@ -59,9 +59,15 @@ function App() {
         Ja<span className={styles.highlight}>mmm</span>ing
       </h1>
       <div className={styles.App}>
+        {/* <!-- Add a SearchBar component --> */}
         <SearchBar onSearch={search} />
+
         <div className={styles["App-playlist"]}>
+          {/* <!-- Add a SearchResults component --> */}
           <SearchResults userSearchResults={searchResults} onAdd={addTrack} />
+          {/* passing searchResults state to the SearchResults component as userSearchResults */}
+
+          {/* <!-- Add a Playlist component --> */}
           <Playlist
             playlistName={playlistName}
             playlistTracks={playlistTracks}
@@ -69,6 +75,7 @@ function App() {
             onNameChange={updatePlaylistName}
             onSave={savePlaylist}
           />
+          {/* passing playlistName & playlistTracks states to the Playlist component as userSearchResults */}
         </div>
       </div>
     </div>
